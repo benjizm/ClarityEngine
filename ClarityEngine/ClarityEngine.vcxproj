@@ -145,9 +145,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ebo.h" />
+    <ClInclude Include="Libraries\Include\glad\glad.h" />
+    <ClInclude Include="Libraries\Include\GLFW\glfw3.h" />
+    <ClInclude Include="Libraries\Include\GLFW\glfw3native.h" />
+    <ClInclude Include="Libraries\Include\KHR\khrplatform.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="vao.h" />
     <ClInclude Include="vbo.h" />
+    <ClInclude Include="vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

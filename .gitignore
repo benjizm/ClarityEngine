@@ -32,3 +32,4 @@
 *.app
 /.vs/ClarityEngine
 /ClarityEngine/x64/Debug
+/x64/Debug
