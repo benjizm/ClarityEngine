@@ -9,6 +9,7 @@ namespace cengine {
 	struct vec3d_gen {
 		T x, y, z;
 
+		vec3d_gen() { }
 		vec3d_gen(T x, T y, T z) : x(x), y(y), z(z) { }
 
 		T magnitude() {

@@ -4,6 +4,7 @@
 #include "shader.h"
 #include "vao.h"
 #include "ebo.h"
+#include "mesh.h"
 
 int32_t main() {
 	glfwInit();
@@ -24,6 +25,19 @@ int32_t main() {
 		2, 0, 3
 	};
 
+	cengine::triangle t1;
+	t1.p[0] = cengine::fvec3d(-0.5f, -0.5f, 0.0f);
+	t1.p[1] = cengine::fvec3d(0.5f, -0.5f, 0.0f);
+	t1.p[2] = cengine::fvec3d(-0.5f, 0.5f, 0.0f);
+
+	cengine::triangle t2;
+	t2.p[0] = cengine::fvec3d(0.5f, -0.5f, 0.0f);
+	t2.p[1] = cengine::fvec3d(0.5f, 0.5f, 0.0f);
+	t2.p[2] = cengine::fvec3d(-0.5f, 0.5f, 0.0f);
+
+	cengine::mesh square;
+	square.tris = { t1, t2 };
+
 	GLFWwindow* window = glfwCreateWindow(800, 600, "ClarityEngine", NULL, NULL);
 	glfwMakeContextCurrent(window);
 
@@ -35,7 +49,8 @@ int32_t main() {
 	cengine::vao vao;
 	vao.bind();
 
-	cengine::vbo vbo(verts, sizeof(verts));
+	//cengine::vbo vbo(verts, sizeof(verts));
+	cengine::vbo vbo(&square);
 	cengine::ebo ebo(indices, sizeof(indices));
 
 	vao.linkVbo(vbo, 0);
@@ -54,7 +69,8 @@ int32_t main() {
 
 		shader.use();
 		vao.bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		glfwSwapBuffers(window);
 

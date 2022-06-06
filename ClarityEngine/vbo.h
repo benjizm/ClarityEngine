@@ -2,6 +2,7 @@
 #define VBO_H
 
 #include <glad\glad.h>
+#include "mesh.h"
 
 namespace cengine {
 	class vbo {
@@ -9,6 +10,7 @@ namespace cengine {
 		GLuint id;
 
 		vbo(GLfloat* vertices, GLsizeiptr size);
+		vbo(mesh* mesh);
 
 		void bind();
 		void unbind();
