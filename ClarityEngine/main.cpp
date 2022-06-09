@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <vector>
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 #include "shader.h"
@@ -36,7 +37,7 @@ int32_t main() {
 	t2.p[2] = new cengine::fvec3d(-0.5f, 0.5f, 0.0f);
 
 	cengine::mesh square;
-	square.tris = { t1, t2 };
+	square.tris = std::vector<cengine::triangle>{ t1, t2 };
 
 	GLFWwindow* window = glfwCreateWindow(800, 600, "ClarityEngine", NULL, NULL);
 	glfwMakeContextCurrent(window);

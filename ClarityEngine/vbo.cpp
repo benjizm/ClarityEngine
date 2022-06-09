@@ -10,7 +10,7 @@ cengine::vbo::vbo(GLfloat* vertices, GLsizeiptr size) {
 cengine::vbo::vbo(mesh* mesh) {
 	glGenBuffers(1, &id);
 	glBindBuffer(GL_ARRAY_BUFFER, id);
-	const uint32_t count = mesh->tris.size() * 3;
+	const uint32_t count = mesh->tris.size() * 9;
 	GLfloat* vertices = new GLfloat[count];
 	uint32_t i = 0;
 	for (const auto& tri : mesh->tris) {
@@ -21,7 +21,7 @@ cengine::vbo::vbo(mesh* mesh) {
 			i += 3;
 		}
 	}
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * count, vertices, GL_STATIC_DRAW);
 }
 
 void cengine::vbo::bind() {
