@@ -25,15 +25,15 @@ int32_t main() {
 		2, 0, 3
 	};
 
-	cengine::triangle t1;
-	t1.p[0] = cengine::fvec3d(-0.5f, -0.5f, 0.0f);
-	t1.p[1] = cengine::fvec3d(0.5f, -0.5f, 0.0f);
-	t1.p[2] = cengine::fvec3d(-0.5f, 0.5f, 0.0f);
+	cengine::triangle t1 = cengine::triangle();
+	t1.p[0] = new cengine::fvec3d(-0.5f, -0.5f, 0.0f);
+	t1.p[1] = new cengine::fvec3d(0.5f, -0.5f, 0.0f);
+	t1.p[2] = new cengine::fvec3d(-0.5f, 0.5f, 0.0f);
 
-	cengine::triangle t2;
-	t2.p[0] = cengine::fvec3d(0.5f, -0.5f, 0.0f);
-	t2.p[1] = cengine::fvec3d(0.5f, 0.5f, 0.0f);
-	t2.p[2] = cengine::fvec3d(-0.5f, 0.5f, 0.0f);
+	cengine::triangle t2 = cengine::triangle();
+	t2.p[0] = new cengine::fvec3d(0.5f, -0.5f, 0.0f);
+	t2.p[1] = new cengine::fvec3d(0.5f, 0.5f, 0.0f);
+	t2.p[2] = new cengine::fvec3d(-0.5f, 0.5f, 0.0f);
 
 	cengine::mesh square;
 	square.tris = { t1, t2 };
