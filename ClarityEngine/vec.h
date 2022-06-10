@@ -5,9 +5,9 @@
 #include <cstdint>
 
 namespace cengine {
-	template <class T>
+	template<class T>
 	struct vec3d_gen {
-		T x, y, z;
+		T x = 0, y = 0, z = 0;
 
 		vec3d_gen() { }
 		vec3d_gen(T x, T y, T z) : x(x), y(y), z(z) { }

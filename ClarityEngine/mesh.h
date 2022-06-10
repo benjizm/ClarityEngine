@@ -6,7 +6,7 @@
 
 namespace cengine {
 	struct triangle {
-		fvec3d* p[3];
+		fvec3d p[3];
 	};
 
 	struct mesh {

@@ -15,13 +15,14 @@ cengine::vbo::vbo(mesh* mesh) {
 	uint32_t i = 0;
 	for (const auto& tri : mesh->tris) {
 		for (const auto& vec : tri.p) {
-			vertices[i] = vec->x;
-			vertices[i + 1] = vec->y;
-			vertices[i + 2] = vec->z;
+			vertices[i] = vec.x;
+			vertices[i + 1] = vec.y;
+			vertices[i + 2] = vec.z;
 			i += 3;
 		}
 	}
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * count, vertices, GL_STATIC_DRAW);
+	delete[] vertices;
 }
 
 void cengine::vbo::bind() {

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="ebo.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -151,11 +152,13 @@
     <None Include="default.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="ebo.h" />
     <ClInclude Include="Libraries\Include\glad\glad.h" />
     <ClInclude Include="Libraries\Include\GLFW\glfw3.h" />
     <ClInclude Include="Libraries\Include\GLFW\glfw3native.h" />
     <ClInclude Include="Libraries\Include\KHR\khrplatform.h" />
+    <ClInclude Include="mat.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="vao.h" />
