@@ -1,3 +1,4 @@
+#include <thread>
 #include <glad\glad.h>
 #include "window.h"
 
@@ -51,6 +52,9 @@ void cengine::window::run() {
 		last = current;
 
 		glRenderFrame(elapsedTime.count());
+
+		int count = 1.0f / 60.0f - elapsedTime.count();
+		std::this_thread::sleep_for(std::chrono::seconds(count));
 	}
 
 	close();
