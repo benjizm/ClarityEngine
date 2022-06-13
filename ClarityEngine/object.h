@@ -8,13 +8,18 @@
 #include "camera.h"
 
 namespace cengine {
-	struct object {
+	class object {
+	public:
 		mesh* mesh;
 		shader* shader;
 		vao* vao;
 		vbo* vbo;
 
-		void draw(const camera& camera);
+		object(cengine::mesh& imesh, cengine::shader& ishader, cengine::vao& ivao);
+
+		void initialize();
+		void draw(camera& camera);
+		void deleteObject();
 	};
 }
 

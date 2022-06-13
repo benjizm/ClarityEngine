@@ -6,6 +6,7 @@
 #include "vao.h"
 #include "ebo.h"
 #include "mesh.h"
+#include "object.h"
 
 int32_t main() {
 	glfwInit();
@@ -45,20 +46,24 @@ int32_t main() {
 	gladLoadGL();
 	glViewport(0, 0, 800, 600);
 
-	cengine::shader shader("default.vert", "default.frag");
-
 	cengine::vao vao;
-	vao.bind();
+	cengine::camera camera(cengine::fvec3d(0, 0, 3));
+	cengine::shader shader("default.vert", "default.frag");
+	cengine::object object(square, shader, vao);
+	object.initialize();
 
-	//cengine::vbo vbo(verts, sizeof(verts));
-	cengine::vbo vbo(&square);
-	cengine::ebo ebo(indices, sizeof(indices));
+	//cengine::vao vao;
+	//vao.bind();
 
-	vao.linkVbo(vbo, 0);
+	////cengine::vbo vbo(verts, sizeof(verts));
+	//cengine::vbo vbo(&square);
+	//cengine::ebo ebo(indices, sizeof(indices));
 
-	vbo.unbind();
-	vao.unbind();
-	ebo.unbind();
+	//vao.linkVbo(vbo, 0);
+
+	//vbo.unbind();
+	//vao.unbind();
+	//ebo.unbind();
 
 	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -68,20 +73,24 @@ int32_t main() {
 		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		shader.use();
-		vao.bind();
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		object.draw(camera);
+
+		//shader.use();
+		//vao.bind();
+		////glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
 	}
 
-	vao.deleteVao();
-	vbo.deleteVbo();
-	ebo.deleteEbo();
-	shader.deleteShader();
+	//vao.deleteVao();
+	//vbo.deleteVbo();
+	//ebo.deleteEbo();
+	//shader.deleteShader();
+
+	object.deleteObject();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

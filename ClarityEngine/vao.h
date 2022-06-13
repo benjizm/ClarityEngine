@@ -11,7 +11,7 @@ namespace cengine {
 
 		vao();
 
-		void linkVbo(vbo vbo, GLuint layout);
+		void linkVbo(vbo& vbo, GLuint layout);
 		void bind();
 		void unbind();
 		void deleteVao();

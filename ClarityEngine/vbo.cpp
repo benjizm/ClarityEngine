@@ -9,7 +9,7 @@ cengine::vbo::vbo(GLfloat* vertices, GLsizeiptr size) {
 
 cengine::vbo::vbo(mesh* mesh) {
 	glGenBuffers(1, &id);
-	glBindBuffer(GL_ARRAY_BUFFER, id);
+	bind();
 	const uint32_t count = mesh->tris.size() * 9;
 	GLfloat* vertices = new GLfloat[count];
 	uint32_t i = 0;
