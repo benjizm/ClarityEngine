@@ -1,9 +1,9 @@
 #include "object.h"
 
 cengine::object::object(cengine::mesh& imesh, cengine::shader& ishader, cengine::vao& ivao) {
-	mesh = &imesh;
-	shader = &ishader;
-	vao = &ivao;
+	mesh = new cengine::mesh(imesh);
+	shader = new cengine::shader(ishader);
+	vao = new cengine::vao(ivao);
 	vbo = new cengine::vbo(mesh);
 }
 

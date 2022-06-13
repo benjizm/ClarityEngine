@@ -17,6 +17,7 @@ namespace cengine {
 		float near, far, aspectRatio;
 		fvec3d pos, front, up, right;
 
+		camera();
 		camera(fvec3d pos);
 
 		fmat4x4 getViewMatrix();
