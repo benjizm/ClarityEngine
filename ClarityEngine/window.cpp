@@ -46,15 +46,26 @@ void cengine::window::close() {
 void cengine::window::run() {
 	glInitialize();
 
+	double lastTime = glfwGetTime();
+	double secs = lastTime;
+	int fps = 0;
+
 	while (!glfwWindowShouldClose(win)) {
-		std::chrono::system_clock::time_point current = clock.now();
-		std::chrono::duration<float> elapsedTime = current - last;
-		last = current;
+		double currentTime = glfwGetTime();
+		double diff = currentTime - lastTime;
 
-		glRenderFrame(elapsedTime.count());
+		glRenderFrame(diff);
+		double sleep = 1000.0f / 60.0f - diff;
+		std::this_thread::sleep_for(std::chrono::milliseconds((int)(sleep * 1000.0f)));
+		fps++;
 
-		int count = 1.0f / 60.0f - elapsedTime.count();
-		std::this_thread::sleep_for(std::chrono::seconds(count));
+		if (currentTime - secs >= 1.0) {
+			fps = 0;
+			secs += 1.0;
+		}
+
+		//int count = 1000.0f / 60.0f - ms.count();
+		//std::this_thread::sleep_for(std::chrono::milliseconds(count));
 	}
 
 	close();

@@ -75,8 +75,8 @@
     <LibraryPath>.\Libraries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\brycroft\source\repos\ClarityEngine\ClarityEngine\Libraries\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\brycroft\source\repos\ClarityEngine\ClarityEngine\Libraries\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Libraries\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\Libraries\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
