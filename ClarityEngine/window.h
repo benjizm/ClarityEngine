@@ -7,16 +7,15 @@
 namespace cengine {
 	class window {
 		GLFWwindow* win;
-		std::chrono::system_clock clock;
-		std::chrono::system_clock::time_point last;
 
 		void glInitialize();
 		void glRenderFrame(float dtime);
 		void close();
 
-		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+		static void framebufferSizeCallback(GLFWwindow* window, int32_t width, int32_t height);
 
 	public:
+		int32_t maxfps = 60;
 		float width, height;
 		const char* name;
 

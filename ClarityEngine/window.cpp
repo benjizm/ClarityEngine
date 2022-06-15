@@ -1,4 +1,5 @@
 #include <thread>
+#include <string>
 #include <glad\glad.h>
 #include "window.h"
 
@@ -22,10 +23,8 @@ void cengine::window::glInitialize() {
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	GLFWframebuffersizefun fun = &framebuffer_size_callback;
-	glfwSetFramebufferSizeCallback(win, framebuffer_size_callback);
-
-	last = clock.now();
+	GLFWframebuffersizefun fun = &framebufferSizeCallback;
+	glfwSetFramebufferSizeCallback(win, framebufferSizeCallback);
 
 	initialize();
 }
@@ -46,20 +45,30 @@ void cengine::window::close() {
 void cengine::window::run() {
 	glInitialize();
 
+	double dlast = glfwGetTime();
 	double lastTime = glfwGetTime();
 	double secs = lastTime;
 	int fps = 0;
+	std::string fpsTitle;
 
 	while (!glfwWindowShouldClose(win)) {
 		double currentTime = glfwGetTime();
-		double diff = currentTime - lastTime;
-
+		double diff = currentTime - dlast;
+		dlast = currentTime;
 		glRenderFrame(diff);
-		double sleep = 1000.0f / 60.0f - diff;
-		std::this_thread::sleep_for(std::chrono::milliseconds((int)(sleep * 1000.0f)));
+
+		while (glfwGetTime() < lastTime + 1.0 / maxfps) {
+			std::this_thread::sleep_for(std::chrono::microseconds(100));
+		}
+		lastTime += 1.0 / maxfps;
+
 		fps++;
 
 		if (currentTime - secs >= 1.0) {
+			fpsTitle = "ClarityEngine [";
+			fpsTitle += std::to_string(fps);
+			fpsTitle += " FPS]";
+			glfwSetWindowTitle(win, fpsTitle.c_str());
 			fps = 0;
 			secs += 1.0;
 		}
@@ -71,6 +80,6 @@ void cengine::window::run() {
 	close();
 }
 
-void cengine::window::framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void cengine::window::framebufferSizeCallback(GLFWwindow* window, int32_t width, int32_t height) {
 	glViewport(0, 0, width, height);
 };
