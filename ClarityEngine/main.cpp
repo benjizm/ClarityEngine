@@ -18,10 +18,10 @@ public:
 
 	virtual void initialize() override {
 		GLfloat verts[] = {
-			0.5f, 0.5f, 0.0f,
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			-0.5f, 0.5f, 0.0f
+			0.5f, 0.5f, 0.5f,
+			-0.5f, -0.5f, 0.5f,
+			0.5f, -0.5f, 0.5f,
+			-0.5f, 0.5f, 0.5f
 		};
 
 		GLuint indices[] = {
@@ -56,6 +56,7 @@ public:
 		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		object->position.x += 1 * dtime;
 		object->draw(*camera);
 	}
 
@@ -151,7 +152,7 @@ int32_t main() {
 	//glfwDestroyWindow(window);
 	//glfwTerminate();
 
-	demo demo(800, 600, "ClarityEngine");
+	demo demo(800, 600, "ClarityEngine Demo");
 	demo.run();
 
 	return 0;

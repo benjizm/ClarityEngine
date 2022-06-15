@@ -5,6 +5,9 @@ cengine::object::object(cengine::mesh& imesh, cengine::shader& ishader, cengine:
 	shader = new cengine::shader(ishader);
 	vao = new cengine::vao(ivao);
 	vbo = new cengine::vbo(mesh);
+
+	rotation = cengine::fmat4x4::identity();
+	position = cengine::fvec3d(0, 0, 0);
 }
 
 void cengine::object::initialize() {
@@ -18,13 +21,13 @@ void cengine::object::draw(cengine::camera& cam) {
 	shader->use();
 	vao->bind();
 
-	cengine::fvec3d position;
-	cengine::fmat4x4 ident = cengine::fmat4x4::identity();
+	cengine::fmat4x4 model = cengine::fmat4x4::identity();
 	cengine::fmat4x4 trans = cengine::fmat4x4::createTranslation(position);
-	cengine::fmat4x4 i = cengine::fmat4x4::dot(ident, trans);
+	model = cengine::fmat4x4::dot(model, trans);
+	model = cengine::fmat4x4::dot(model, rotation);
 	cengine::fmat4x4 view = cam.getViewMatrix();
 	cengine::fmat4x4 proj = cam.getProjectionMatrix();
-	shader->setMat4x4("model", i);
+	shader->setMat4x4("model", model);
 	shader->setMat4x4("view", view);
 	shader->setMat4x4("projection", proj);
 

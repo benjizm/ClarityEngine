@@ -9,11 +9,15 @@
 
 namespace cengine {
 	class object {
+
 	public:
 		mesh* mesh;
 		shader* shader;
 		vao* vao;
 		vbo* vbo;
+
+		fmat4x4 rotation;
+		fvec3d position;
 
 		object(cengine::mesh& imesh, cengine::shader& ishader, cengine::vao& ivao);
 

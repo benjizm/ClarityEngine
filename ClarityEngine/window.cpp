@@ -65,7 +65,8 @@ void cengine::window::run() {
 		fps++;
 
 		if (currentTime - secs >= 1.0) {
-			fpsTitle = "ClarityEngine [";
+			fpsTitle = name;
+			fpsTitle += " [";
 			fpsTitle += std::to_string(fps);
 			fpsTitle += " FPS]";
 			glfwSetWindowTitle(win, fpsTitle.c_str());

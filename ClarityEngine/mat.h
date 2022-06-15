@@ -84,6 +84,39 @@ namespace cengine {
 			return dot(trans, rot);
 		}
 
+		static mat4x4_gen<T> createXRotation(float angle) {
+			mat4x4_gen<T> retval;
+			retval.m[0][0] = 1;
+			retval.m[1][1] = std::cosf(angle);
+			retval.m[2][1] = -std::sinf(angle);
+			retval.m[1][2] = std::sinf(angle);
+			retval.m[2][2] = std::cosf(angle);
+			retval.m[3][3] = 1;
+			return retval;
+		}
+
+		static mat4x4_gen<T> createYRotation(float angle) {
+			mat4x4_gen<T> retval;
+			retval.m[1][1] = 1;
+			retval.m[0][0] = std::cosf(angle);
+			retval.m[2][0] = std::sinf(angle);
+			retval.m[0][2] = -std::sinf(angle);
+			retval.m[2][2] = std::cosf(angle);
+			retval.m[3][3] = 1;
+			return retval;
+		}
+
+		static mat4x4_gen<T> createZRotation(float angle) {
+			mat4x4_gen<T> retval;
+			retval.m[2][2] = 1;
+			retval.m[1][1] = std::cosf(angle);
+			retval.m[1][0] = -std::sinf(angle);
+			retval.m[0][1] = std::sinf(angle);
+			retval.m[0][0] = std::cosf(angle);
+			retval.m[3][3] = 1;
+			return retval;
+		}
+
 		static vec3d_gen<T> multiplyVector(vec3d_gen<T>& vec, mat4x4_gen<T>& mat) {
 			vec3d_gen<T> retval;
 			retval.x = vec.x * mat.m[0][0] + vec.y * mat.m[1][0] + vec.z * mat.m[2][0] + mat.m[3][0];
