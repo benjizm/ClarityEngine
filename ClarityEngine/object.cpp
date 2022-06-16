@@ -23,8 +23,8 @@ void cengine::object::draw(cengine::camera& cam) {
 
 	cengine::fmat4x4 model = cengine::fmat4x4::identity();
 	cengine::fmat4x4 trans = cengine::fmat4x4::createTranslation(position);
-	model = cengine::fmat4x4::dot(model, trans);
 	model = cengine::fmat4x4::dot(model, rotation);
+	model = cengine::fmat4x4::dot(model, trans);
 	cengine::fmat4x4 view = cam.getViewMatrix();
 	cengine::fmat4x4 proj = cam.getProjectionMatrix();
 	shader->setMat4x4("model", model);
